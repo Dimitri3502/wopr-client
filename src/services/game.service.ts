@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { caseEnum } from '@monorepo/common';
+import { caseEnum, IResponse } from '@monorepo/common';
 
 export interface UpdateGameDto {
   x: number;
@@ -8,7 +8,7 @@ export interface UpdateGameDto {
 }
 
 export const GameService = {
-  get: async (clientId: string) => {
+  get: async (clientId: string): Promise<IResponse> => {
     return axios
       .get('http://localhost:3001/game', {
         headers: {
@@ -19,7 +19,7 @@ export const GameService = {
         return response.data;
       });
   },
-  play: async (clientId: string, data: UpdateGameDto) => {
+  play: async (clientId: string, data: UpdateGameDto): Promise<IResponse> => {
     return axios
       .post('http://localhost:3001/game', data, {
         headers: {
